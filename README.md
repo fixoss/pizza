@@ -64,3 +64,5 @@ test_pizza.py ....                                                              
 - [ ] Proving time calculation ?
 - [ ] Different yeast types ?
 - [ ] Adjust for room temperature ?
+- [ ] Instructions for making the dough ?
+- [ ] Sourdough :S
