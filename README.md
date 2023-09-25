@@ -3,8 +3,8 @@
 The most over-engineered pizza calculator ever!
 
 ## Requirements
-* Python3
-* PyTest
+* [python3](https://www.python.org/downloads/)
+* [pytest](https://docs.pytest.org/en/7.4.x/contents.html)
 * Hunger for 🍕
 
 ## Usage:
