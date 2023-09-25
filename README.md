@@ -40,6 +40,8 @@ It will also remember the previous inputs provided to make it easier to tweak a 
 
 ## Tests
 
+![Tests](https://github.com/fixoss/pizza/actions/workflows/main.yml/badge.svg)
+
 [Install pytest](https://docs.pytest.org/en/7.4.x/getting-started.html#getstarted)
 ```
 $ cd pizza/
