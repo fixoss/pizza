@@ -1,4 +1,4 @@
-# Pizza!
+# Pizza Calculator
 
 The most over-engineered pizza calculator ever!
 
