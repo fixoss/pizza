@@ -20,6 +20,9 @@ class PizzaRecipe:
 	def load(self, path=recipe_path):
 		with open(path, 'r') as f:
 			recipe_dict = json.loads(f.read())
+			self.num_pizzas= recipe_dict['num_pizzas']
+			self.ball_weight_g = recipe_dict['ball_weight_g']
+			self.hydration = recipe_dict['hydration']
 
 	def ingredients(self):
 		dough_weight_g = self.num_pizzas * self.ball_weight_g
@@ -55,7 +58,7 @@ def run():
 	try:
 		# Try to grab the previous pizza recipe
 		mypizza.load()
-	except IOError as e:
+	except IOError:
 		# If no recipes exist, then we start a new recipe from scratch
 		mypizza = PizzaRecipe()
 
