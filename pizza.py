@@ -21,6 +21,32 @@ class PizzaRecipe:
 		with open(path, 'r') as f:
 			recipe_dict = json.loads(f.read())
 
+	def ingredients(self):
+		dough_weight_g = self.num_pizzas * self.ball_weight_g
+		flour_ratio = 100
+		water_ratio = self.hydration
+		salt_ratio = 3
+		yeast_ratio = 0.08
+		total_ratio = flour_ratio + water_ratio + yeast_ratio + salt_ratio
+
+		dough_ratio = dough_weight_g / total_ratio
+		flour_weight_g = dough_ratio * flour_ratio
+		water_weight_g = dough_ratio * water_ratio
+		salt_weight_g = dough_ratio * salt_ratio
+		yeast_weight_g = dough_ratio * yeast_ratio
+
+		return {
+			"flour_ratio": flour_ratio,
+			"flour": flour_weight_g,
+			"water_ratio": water_ratio,
+			"water": water_weight_g,
+			"salt_ratio": salt_ratio,
+			"salt": salt_weight_g,
+			"yeast_ratio": yeast_ratio,
+			"yeast": yeast_weight_g
+		}
+
+
 
 def run():
 	# Let there be pizza
@@ -48,25 +74,13 @@ def run():
 	except:
 		pass
 
-	dough_weight_g = mypizza.num_pizzas * mypizza.ball_weight_g
-	flour_ratio = 100
-	water_ratio = mypizza.hydration
-	salt_ratio = 3
-	yeast_ratio = 0.08
-
-	total_ratio = flour_ratio + water_ratio + yeast_ratio + salt_ratio
-
-	dough_ratio = dough_weight_g / total_ratio
-	flour_weight_g = dough_ratio * flour_ratio
-	water_weight_g = dough_ratio * water_ratio
-	salt_weight_g = dough_ratio * salt_ratio
-	yeast_weight_g = dough_ratio * yeast_ratio
+	ingredients = mypizza.ingredients()
 
 	results = ["---"]
-	results += [f"Flour ({flour_ratio}%): {flour_weight_g:.0f}g"]
-	results += [f"Water ({water_ratio}%): {water_weight_g:.0f}g"]
-	results += [f"Salt ({salt_ratio}%): {salt_weight_g:.2f}g"]
-	results += [f"Yeast ({yeast_ratio}%): {yeast_weight_g:.2f}g"]
+	results += [f"Flour ({ingredients['flour_ratio']}%): {ingredients['flour']:.0f}g"]
+	results += [f"Water ({ingredients['water_ratio']}%): {ingredients['water']:.0f}g"]
+	results += [f"Salt ({ingredients['salt_ratio']}%): {ingredients['salt']:.2f}g"]
+	results += [f"Yeast ({ingredients['yeast_ratio']}%): {ingredients['yeast']:.2f}g"]
 
 	mypizza.save()
 	print("\n".join(results))
