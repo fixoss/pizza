@@ -2,6 +2,11 @@
 
 The most over-engineered pizza calculator ever!
 
+## Requirements
+* Python3
+* PyTest
+* Hunger for 🍕
+
 ## Usage:
 
 Run
@@ -35,7 +40,19 @@ It will also remember the previous inputs provided to make it easier to tweak a 
 
 ## Tests
 
-TODO
+[Install pytest](https://docs.pytest.org/en/7.4.x/getting-started.html#getstarted)
+```
+$ cd pizza/
+$ pytest
+================================================== test session starts ===================================================
+platform linux -- Python 3.11.2, pytest-7.2.1, pluggy-1.0.0+repack
+rootdir: /your/path/to/pizza
+collected 4 items                                                                                                        
+
+test_pizza.py ....                                                                                                 [100%]
+
+=================================================== 4 passed in 0.02s ====================================================
+```
 
 ## Roadmap
 
