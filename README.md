@@ -4,15 +4,22 @@ The most over-engineered pizza calculator ever!
 
 ## Requirements
 * [python3](https://www.python.org/downloads/)
+* [pipenv](https://pipenv.pypa.io/en/latest/)
 * [pytest](https://docs.pytest.org/en/7.4.x/contents.html)
 * Hunger for 🍕
 
 ## Usage:
 
-Run
+Install [Pipenv](https://pipenv.pypa.io/en/latest/) and then install dependencies:
+```
+pip install --user pipenv
+pipenv install
+```
+
+Run:
 
 ```
-$ python3 pizza.py
+$ pipenv run python3 pizza.py
 ```
 
 Enter your inputs to the recipe:
@@ -42,10 +49,9 @@ It will also remember the previous inputs provided to make it easier to tweak a 
 
 ![Tests](https://github.com/fixoss/pizza/actions/workflows/main.yml/badge.svg)
 
-[Install pytest](https://docs.pytest.org/en/7.4.x/getting-started.html#getstarted)
 ```
 $ cd pizza/
-$ pytest
+$ pipenv run pytest
 ================================================== test session starts ===================================================
 platform linux -- Python 3.11.2, pytest-7.2.1, pluggy-1.0.0+repack
 rootdir: /your/path/to/pizza
