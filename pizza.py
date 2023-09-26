@@ -1,4 +1,7 @@
 import json
+from prompt_toolkit import prompt
+from prompt_toolkit.validation import Validator, ValidationError
+import sys
 
 class PizzaRecipe:
 	recipe_path = "./recipe.json"
@@ -49,7 +52,18 @@ class PizzaRecipe:
 			"yeast": yeast_weight_g
 		}
 
-
+class NumberValidator(Validator):
+    def validate(self, document):
+        text = document.text
+        if text and not text.isdigit():
+            i = 0
+            # Get index of first non numeric character.
+            # We want to move the cursor here.
+            for i, c in enumerate(text):
+                if not c.isdigit():
+                    break
+            raise ValidationError(message='This input contains non-numeric characters',
+                                  cursor_position=i)
 
 def run():
 	# Let there be pizza
@@ -63,19 +77,23 @@ def run():
 		mypizza = PizzaRecipe()
 
 	try:
-		mypizza.num_pizzas = int(input(f"Number of pizzas ({mypizza.num_pizzas}): "))
-	except:
-		pass
-
-	try:
-		mypizza.ball_weight_g = int(input(f"Size grams ({mypizza.ball_weight_g}g): "))
-	except:
-		pass
-
-	try:
-		mypizza.hydration = int(input(f"Hydration ({mypizza.hydration}%): "))
-	except:
-		pass
+		mypizza.num_pizzas = int(prompt(
+			"Number of pizzas? 🍕: ",
+			default=str(mypizza.num_pizzas),
+			validator=NumberValidator()
+		))
+		mypizza.ball_weight_g = int(prompt(
+			"Size in grams? ⚖️: ",
+			default=str(mypizza.ball_weight_g),
+			validator=NumberValidator()
+			))
+		mypizza.hydration = int(prompt(
+			"Hydration in %? 🌊: ",
+			default=str(mypizza.hydration),
+			validator=NumberValidator()
+		))
+	except KeyboardInterrupt:
+		sys.exit(1)
 
 	ingredients = mypizza.ingredients()
 
